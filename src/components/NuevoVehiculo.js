@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 import axios from 'axios';
-
 
 const NuevoVehiculo = () => {
 
@@ -15,35 +13,19 @@ const NuevoVehiculo = () => {
   const handleSubmit = (event) => {
 
     event.preventDefault();
-    
-    // const headers = {
-    //   'Access-Control-Allow-Origin' : '*',
-    //   'Access-Control-Allow-Credentials': true,
-    //   'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    // }
 
-    const vehiculo = {
-      placa: atributo.placa
-    }
-
-    console.log("Vehiculo", vehiculo);
-    // useEffect(() => {
-
-    axios.post(`http://localhost:3000/vehiculo`, vehiculo )
+    axios.post(`http://localhost:3000/vehiculo`, atributo )
       .then(res => {
         console.log(res);
         console.log(res.Status);
       })
       .catch(error => console.log(error));
 
-    // }, []);
-
+      limpiarInput();
   }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    console.log(value);
 
     setAtributo(prevAtributo => ({
       ...prevAtributo,
@@ -51,17 +33,14 @@ const NuevoVehiculo = () => {
     }));
   }
 
-  function handleClick(e) {
-
+  const limpiarInput = () => {
     setAtributo({
       placa: '',
       marca: '',
       linea: '',
       modelo: ''
     });
-    e.preventDefault();
-
-  }
+  };
 
   return (
     <div>
@@ -82,7 +61,6 @@ const NuevoVehiculo = () => {
           Modelo
         <input type='text' name='modelo' onChange={handleChange} value={atributo.modelo} />
         </label>
-        {/* <button type='submit'>Guardar</button> */}
         <input type='submit' value='Guardar' />
       </form>
     </div>

@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import Axios from 'axios';
 
 const Api = () => {
 
-  const [state, setstate] = useState({
+  const [state, setState] = useState({
     done: false,
     vehiculos: []
   });
 
   useEffect(() => {
-    fetch('http://localhost:3000/vehiculo')
-      .then(response => response.json())
+    Axios.get('http://localhost:3000/vehiculo')
       .then(res => {
-        if (res && res.data) {
-          console.log("res.data", res.data);
-          setstate({ vehiculos: [...state.vehiculos, ...res.data] });
-        }
+        const vehiculos = res.data;
+        setState({vehiculos: [...state.vehiculos, ...vehiculos]});
       });
   }, []);
 

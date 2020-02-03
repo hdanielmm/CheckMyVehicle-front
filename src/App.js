@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Api from './components/Api';
+import NuevoVehiculo from './components/NuevoVehiculo';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         </a>
       </header>
       <Api />
+      <NuevoVehiculo />
     </div>
   );
 }

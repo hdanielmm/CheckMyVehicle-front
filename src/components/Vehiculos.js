@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios';
 
-const Api = () => {
+const Vehiculos = () => {
 
   const [state, setState] = useState({
     done: false,
@@ -12,7 +12,7 @@ const Api = () => {
     Axios.get('http://localhost:3000/vehiculo')
       .then(res => {
         const vehiculos = res.data;
-        setState({vehiculos: [...state.vehiculos, ...vehiculos]});
+        setState({ vehiculos: [...state.vehiculos, ...vehiculos] });
       });
   }, []);
 
@@ -31,11 +31,9 @@ const Api = () => {
   }
   return (
     <div>
-
-      <h1>Hola desde Api</h1>
       {renderVehiculos()}
     </div>
   )
 }
 
-export default Api
+export default Vehiculos;

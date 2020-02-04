@@ -12,7 +12,7 @@ const NuevoVehiculo = () => {
 
   const handleSubmit = (event) => {
 
-    event.preventDefault();
+    
 
     axios.post(`http://localhost:3000/vehiculo`, atributo )
       .then(res => {
@@ -20,7 +20,7 @@ const NuevoVehiculo = () => {
         console.log(res.Status);
       })
       .catch(error => console.log(error));
-
+      event.preventDefault();
       limpiarInput();
   }
 

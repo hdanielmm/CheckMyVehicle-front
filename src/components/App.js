@@ -1,9 +1,8 @@
 import React from 'react';
 import { Route, NavLink, HashRouter } from 'react-router-dom';
-// import './App.css';
 import Inicio from './Inicio';
 import Vehiculos from './Vehiculos';
-import NuevoVehiculo from './NuevoVehiculo';
+import NuevoVehiculo from './nuevoVehiculo/NuevoVehiculo';
 import Revisiones from './Revisiones';
 import NuevaRevision from './NuevaRevision';
 

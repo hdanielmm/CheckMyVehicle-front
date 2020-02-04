@@ -1,0 +1,13 @@
+.form-vehiculo label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.div-boton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+

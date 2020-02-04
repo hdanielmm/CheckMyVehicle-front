@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios';
-import { render } from '@testing-library/react';
 import './styles.css';
 
 const Vehiculos = () => {

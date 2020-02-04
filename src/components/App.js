@@ -4,7 +4,7 @@ import Inicio from './Inicio';
 import Vehiculos from './vehiculos/Vehiculos';
 import NuevoVehiculo from './nuevoVehiculo/NuevoVehiculo';
 import Revisiones from './Revisiones';
-import NuevaRevision from './NuevaRevision';
+import NuevaRevision from './nuevaRevision/NuevaRevision';
 
 function App() {
   return (

@@ -1,19 +1,6 @@
-/* .vehiculo {
-  border: 1px solid black;
-  display: inline-block;
-  float: left;
-}
-
-.ultima-revision {
-  border: 1px solid blue;
-  display: inline-block;
-  
-  margin-right: 10px;
-} */
-
 .container {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: space-around;
 }

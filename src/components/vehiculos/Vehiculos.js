@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios';
+import { render } from '@testing-library/react';
+import './styles.css';
 
 const Vehiculos = () => {
 
   const [buscarElemento, setBuscarElemento] = useState("");
 
   const [vehiculoEncontrado, setVehiculoEncontrado] = useState({
-    vehiculo: []
+    vehiculo: [],
   });
+
+  const [ultimaRevision, setUltimaRevision] = useState({
+    revision: []
+  })
 
   const [state, setState] = useState({
     done: false,
@@ -22,6 +28,14 @@ const Vehiculos = () => {
       });
   }, []);
 
+  const revisiones = (placa) => {
+    Axios.get('http://localhost:3000/vehiculo/' + placa)
+      .then(res => {
+        const revision = res.data;
+        setUltimaRevision({ revision: [...ultimaRevision.revision, ...revision] });
+      });
+  }
+
   const handleChange = event => {
     const value = event.target.value;
 
@@ -34,9 +48,9 @@ const Vehiculos = () => {
     });
 
     setVehiculoEncontrado({ vehiculo: encontrado });
-    
+
     setBuscarElemento("");
-    
+    revisiones(encontrado[0].placa)
     event.preventDefault();
   }
 
@@ -56,22 +70,25 @@ const Vehiculos = () => {
 
   const buscarVehiculo = () => {
     return (
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input type="text" value={buscarElemento} onChange={handleChange} />
-        </label>
-        <input type='submit' value='Buscar' />
-      </form>
+      <div className='buscar-vehiculo'>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <input type="text" value={buscarElemento} onChange={handleChange} />
+          </label>
+          <input type='submit' value='Buscar' />
+        </form>
+      </div>
     )
   }
 
   const renderVehiculo = () => {
+
     return (
-      <div>
+      <div className='vehiculo'>
         {
           vehiculoEncontrado.vehiculo.map(v => {
             return (
-              <div>
+              <div key={v.placa}>
                 <h3>Datos del vehículo</h3>
                 <p>Placa:  {v.placa}</p>
                 <p>Marca:  {v.marca}</p>
@@ -85,11 +102,31 @@ const Vehiculos = () => {
     );
   };
 
+  const renderUltimaRevision = () => {
+    return (
+      <div className='ultima-revision'>
+        <h3>Última revisión</h3>
+        {
+          ultimaRevision.revision.map((rev, index) => {
+            return (
+              <div key={rev.index}>
+                <h4>{rev.parte}</h4>
+                <p>Técnico: {rev.empleado}</p>
+                <p>Comentario: {rev.diagnostico}</p>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
   return (
-    <div>
+    <div className='container'>
       {buscarVehiculo()}
       {/* {renderVehiculos()} */}
       {renderVehiculo()}
+      {renderUltimaRevision()}
     </div>
   )
 }
